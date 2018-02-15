@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  constructor() { }
+public show_content = false;
+  constructor(
+  ) { }
 
   ngOnInit() {
   }
