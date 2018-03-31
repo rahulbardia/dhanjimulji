@@ -11,3 +11,7 @@ def check_tenant(data):
     else:
         return True
 
+
+def get_request_data(data):
+    print type(data.keys()[0])
+    return data.keys()[0]

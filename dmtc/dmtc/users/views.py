@@ -15,7 +15,12 @@ from models import BaseModel, Tenant, DmtcUser, Buyer, Supplier, SupplierInvento
 from serializers import BaseSerializer, TenantSerializer, DmtcUserSerializer,\
     DmtcBuyerSerializer, DmtcSupplierSerializer, DmtcSupplierInventorySerializer,\
     DmtcSalesmanSerializer
+
+# My Libs
 from dmtc import utils
+
+# Std Libs
+import json
 
 # Create your views here.
 
@@ -31,8 +36,9 @@ class BaseApiView(APIView):
 
     def post(self, request):
 
-        data = request.POST
+        data = request.body
         utils.check_tenant(data)
+        data = json.loads(data)
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -81,7 +87,6 @@ class DmtcTenantUser(BaseApiView):
     """
     def get(self, request):
         data = request.GET
-        # print(data.user)
         # if 'tenant' not in data:
         #     return Response('No tentant passed', status=status.HTTP_400_BAD_REQUEST)
         tenant = data['tenant'] if 'tenant' in data else None
@@ -109,15 +114,12 @@ class DmtcTenantUser(BaseApiView):
                 user.username = data.get('username')
             user.email = data.get('email', None)
             user.set_password(data.get('password', 'password'))
-            # print(user)
             user.save()
         except Exception as e:
             print(e, 'cannot save user')
             raise e
         dmtc_user = {}
-        # print("hello user", user.id)
         tenant_obj = Tenant.objects.filter(id=int(data['tenant']))
-        # print(tenant_obj[0].id, "HI RAHUL")
         dmtc_user['tenant'] = tenant_obj[0].id
         dmtc_user['user'] = user.id
         if 'place' not in data:
@@ -147,8 +149,8 @@ class DmtcBuyer(BaseApiView):
         self.serializer_class = DmtcBuyerSerializer
         self.model_class = Buyer
 
-    # def post(self, request):
-    #     return super(DmtcBuyer, self).post(request)
+    def post(self, request):
+        return super(DmtcBuyer, self).post(request)
 
     def get(self, request):
         data = request.GET
