@@ -14,6 +14,7 @@ import { SupplierInventoryComponent } from './users/supplier-inventory/supplier-
 import { SalesmanComponent } from './users/salesman/salesman.component';
 import { BuyerChildComponent } from './users/buyer/buyer-child/buyer-child.component';
 import { SupplierChildComponent } from './users/supplier/supplier-child/supplier-child.component';
+import {BuyerService} from "./users/buyer/shared/buyer.service";
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { SupplierChildComponent } from './users/supplier/supplier-child/supplier
     ]),
     // RouterModule.forChild(listLazyRoutes())
   ],
-  providers: [],
+  providers: [BuyerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Buyer Form</title>
-</head>
-<body>
-<H3>BUYER</H3>
+
   <form class="container"
         #buyerForm = "ngForm"
-        (ngSubmit) = onSubmit(buyerForm)>
+        (ngSubmit) = onSubmit(buyerForm.value)>
     <label>Tenant</label>
-    <input type="text" name="tenant" ngModel>
+    <input  class="form-control" type="text" name="tenant" ngModel>
     <br>
     <label>Sub-tenant</label>
     <input type="text" name="sub_tenant" ngModel>
@@ -46,5 +39,3 @@
   </form>
 <button (click)="get_data()">GET API</button>
 <a routerLink="buyerchild">Add Child</a>
-</body>
-</html>
