@@ -1,5 +1,5 @@
 import 'rxjs/Rx';
-import { SalesmanService } from "./shared/salesman.service"
+import { CommonService } from "./../../shared/common.service"
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesmanComponent implements OnInit {
 data: any = null;
-  constructor(private http: Http, private _service: SalesmanService) {
+endpoint = '/users/salesman/';
+  constructor(private http: Http, private _service: CommonService) {
 
   }
 
@@ -19,7 +20,7 @@ data: any = null;
   }
 
   onSubmit = function(my_form: any){
-        this._service.postForm(my_form)
+        this._service.postForm(this.endpoint, my_form)
             .subscribe(
             data => {
               console.log("data posted", data);
@@ -27,7 +28,7 @@ data: any = null;
   };
 
   get_data = function(my_form: any){
-        this._service.getData(5)
+        this._service.getData(this.endpoint, 5)
             .subscribe((response) => {
         console.log("API sent", response);
       });

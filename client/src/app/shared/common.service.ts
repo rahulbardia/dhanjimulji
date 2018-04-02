@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Rx'
-import { config } from './../../../config';
+import { config } from './../config';
 
 @Injectable()
-export class SupplierService {
+export class CommonService {
   headers: Headers;
   options: RequestOptions;
   public user = config.username;
@@ -29,15 +29,15 @@ export class SupplierService {
     return Observable.throw(error.statusText);
   }
 
-  postForm(form_val): Observable<any> {
+  postForm(endpoint, form_val): Observable<any> {
         console.log(form_val);
-        return this._http.post(config.WebApiURL + '/users/supplier/', form_val, {headers: this.headers})
+        return this._http.post(config.WebApiURL + endpoint, form_val, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handelError);
     }
 
-  getData(tenantId): Observable<any>{
-    return this._http.get(config.WebApiURL + '/users/supplier/?tenant='+tenantId, {headers: this.headers})
+  getData(endpoint, tenantId): Observable<any>{
+    return this._http.get(config.WebApiURL + endpoint + '?tenant=' + tenantId, {headers: this.headers})
       .map(this.extractData)
       .catch(this.handelError);
   }

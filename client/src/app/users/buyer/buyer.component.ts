@@ -1,5 +1,5 @@
 import 'rxjs/Rx';
-import { BuyerService } from "./shared/buyer.service"
+import { CommonService } from "./../../shared/common.service"
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,15 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyerComponent implements OnInit {
   data: any = null;
-  constructor(private http: Http, private _buyerService: BuyerService) {
-
+  endpoint = '/users/buyer/';
+  constructor(private http: Http, private _buyerService: CommonService) {
   }
 
   ngOnInit() {
   }
 
   onSubmit = function(my_form: any){
-        this._buyerService.postBuyerForm(my_form)
+        this._buyerService.postForm(this.endpoint, my_form)
             .subscribe(
             data => {
               console.log("data posted", data);
@@ -27,7 +27,7 @@ export class BuyerComponent implements OnInit {
   };
 
   get_data = function(my_form: any){
-        this._buyerService.getData(5)
+        this._buyerService.getData(this.endpoint, 5)
             .subscribe((response) => {
         console.log("API sent", response);
       });
