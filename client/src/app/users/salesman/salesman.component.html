@@ -8,7 +8,7 @@
 <H3>SALESMAN</H3>
   <form class="container"
         #salesmanForm = "ngForm"
-        (ngSubmit) = onSubmit(salesmanForm)>
+        (ngSubmit) = onSubmit(salesmanForm.value)>
     <label>Tenant</label>
     <input type="text" name="tenant" ngModel>
     <br>
@@ -25,7 +25,7 @@
     <input type="text" name="address" ngModel>
     <br>
     <label>MOB NO</label>
-    <input type="text" name="mobile_no" ngModel>
+    <input type="text" name="phone_no" ngModel>
     <br>
     <label>EMAIL</label>
     <input type="text" name="email" ngModel>

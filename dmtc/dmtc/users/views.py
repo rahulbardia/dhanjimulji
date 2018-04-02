@@ -35,7 +35,6 @@ class BaseApiView(APIView):
         self.filter = {}
 
     def post(self, request):
-
         data = request.body
         utils.check_tenant(data)
         data = json.loads(data)
@@ -43,6 +42,7 @@ class BaseApiView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
+        print serializer.errors
         return Response(serializer.errors, status=status.HTTP_304_NOT_MODIFIED)
 
     def get(self, request):

@@ -7,8 +7,8 @@
 <body>
   <H3>SUPPLIER</H3>
   <form class="container"
-        #buyerForm = "ngForm"
-        (ngSubmit) = onSubmit(buyerForm)>
+        #supplierForm = "ngForm"
+        (ngSubmit) = onSubmit(supplierForm.value)>
     <label>Tenant</label>
     <input type="text" name="tenant" ngModel>
     <br>
@@ -39,11 +39,16 @@
     <label>PAN</label>
     <input type="text" name="pan_no" ngModel>
     <br>
+    <label>COMMISSION PERCENTAGE</label>
+    <input type="text" name="commission_percentage" ngModel>
+    <br>
     <label>CREDIT LIMIT</label>
     <input type="text" name="credit_limit" ngModel>
     <br><br><br>
     <input type="submit" name="Submit">
   </form>
+
+<button (click)="get_data()">GET API</button>
 
 <a routerLink="supplierchild">Add Supplier Child</a>
 

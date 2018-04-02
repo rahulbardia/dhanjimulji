@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx'
 import { config } from './../../../config';
 
 @Injectable()
-export class BuyerService {
+export class SupplierService {
   headers: Headers;
   options: RequestOptions;
   public user = config.username;
@@ -29,14 +29,15 @@ export class BuyerService {
     return Observable.throw(error.statusText);
   }
 
-  postBuyerForm(form_val): Observable<any> {
-        return this._http.post(config.WebApiURL + '/users/buyer/', form_val, {headers: this.headers})
+  postForm(form_val): Observable<any> {
+        console.log(form_val);
+        return this._http.post(config.WebApiURL + '/users/supplier/', form_val, {headers: this.headers})
             .map(this.extractData)
             .catch(this.handelError);
     }
 
   getData(tenantId): Observable<any>{
-    return this._http.get(config.WebApiURL + '/users/buyer/?tenant='+tenantId, {headers: this.headers})
+    return this._http.get(config.WebApiURL + '/users/supplier/?tenant='+tenantId, {headers: this.headers})
       .map(this.extractData)
       .catch(this.handelError);
   }

@@ -1,7 +1,7 @@
 import 'rxjs/Rx';
 import { BuyerService } from "./shared/buyer.service"
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Component, OnInit, Output, EventEmitter, ViewContainerRef } from '@angular/core';
+import { Http } from '@angular/http';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -11,7 +11,6 @@ import { Component, OnInit, Output, EventEmitter, ViewContainerRef } from '@angu
 })
 export class BuyerComponent implements OnInit {
   data: any = null;
-  public api_url = 'http://127.0.0.1:8000/users/buyer/?tenant=5';
   constructor(private http: Http, private _buyerService: BuyerService) {
 
   }

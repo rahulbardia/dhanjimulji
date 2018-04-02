@@ -15,6 +15,8 @@ import { SalesmanComponent } from './users/salesman/salesman.component';
 import { BuyerChildComponent } from './users/buyer/buyer-child/buyer-child.component';
 import { SupplierChildComponent } from './users/supplier/supplier-child/supplier-child.component';
 import {BuyerService} from "./users/buyer/shared/buyer.service";
+import {SalesmanService} from "./users/salesman/shared/salesman.service";
+import {SupplierService} from "./users/supplier/shared/supplier.service";
 
 
 @NgModule({
@@ -69,7 +71,7 @@ import {BuyerService} from "./users/buyer/shared/buyer.service";
     ]),
     // RouterModule.forChild(listLazyRoutes())
   ],
-  providers: [BuyerService],
+  providers: [BuyerService, SalesmanService, SupplierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
