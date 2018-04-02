@@ -30,6 +30,7 @@ export class CommonService {
   }
 
   postForm(endpoint, form_val): Observable<any> {
+    console.log("common service to post");
         console.log(form_val);
         return this._http.post(config.WebApiURL + endpoint, form_val, {headers: this.headers})
             .map(this.extractData)
@@ -37,6 +38,7 @@ export class CommonService {
     }
 
   getData(endpoint, tenantId): Observable<any>{
+    console.log("common service to get");
     return this._http.get(config.WebApiURL + endpoint + '?tenant=' + tenantId, {headers: this.headers})
       .map(this.extractData)
       .catch(this.handelError);

@@ -12,22 +12,22 @@ import { Component, OnInit } from '@angular/core';
 export class BuyerComponent implements OnInit {
   data: any = null;
   endpoint = '/users/buyer/';
-  constructor(private http: Http, private _buyerService: CommonService) {
+  constructor(private http: Http, private _service: CommonService) {
   }
 
   ngOnInit() {
   }
 
   onSubmit = function(my_form: any){
-        this._buyerService.postForm(this.endpoint, my_form)
+        this._service.postForm(this.endpoint, my_form)
             .subscribe(
             data => {
               console.log("data posted", data);
             });
   };
 
-  get_data = function(my_form: any){
-        this._buyerService.getData(this.endpoint, 5)
+  get_data = function(){
+        this._service.getData(this.endpoint, 5)
             .subscribe((response) => {
         console.log("API sent", response);
       });

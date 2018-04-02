@@ -8,7 +8,7 @@
 <H3>SUPPLIER INVENTORY</H3>
   <form class="container"
         #supplierinventoryForm = "ngForm"
-        (ngSubmit) = onSubmit(supplierinventoryForm)>
+        (ngSubmit) = onSubmit(supplierinventoryForm.value)>
     <label>Tenant</label>
     <input type="text" name="tenant" ngModel>
     <br>
@@ -48,6 +48,6 @@
     <br><br><br>
     <input type="submit" name="Submit">
   </form>
-<!--<button (click)="get_data()">GET API</button>-->
+<button (click)="get_data()">GET API</button>
 </body>
 </html>

@@ -8,8 +8,8 @@
 <body>
 <H3>BUYER CHILD</H3>
   <form class="container"
-        #buyerForm = "ngForm"
-        (ngSubmit) = onSubmit(buyerForm)>
+        #buyerChildForm = "ngForm"
+        (ngSubmit) = onSubmit(buyerChildForm.value)>
     <label>Tenant</label>
     <input type="text" name="tenant" ngModel>
     <br>
@@ -45,13 +45,14 @@
     <br>
     <label>CREDIT LIMIT</label>
     <input type="text" name="credit_limit" ngModel>
-    <br><br><br>
-    <input type="submit" name="Submit">
+    <br>
     <label>Commission Percentage</label>
     <input type="text" name="commission_percentage" ngModel>
+    <br><br><br>
+    <input type="submit" name="Submit">
     <br>
   </form>
-
+<button (click)="get_data()">GET API</button>
 </body>
 </html>
 <app-buyer></app-buyer>

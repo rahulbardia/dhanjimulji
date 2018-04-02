@@ -26,7 +26,7 @@ endpoint = '/users/supplier/';
             });
   };
 
-  get_data = function(my_form: any){
+  get_data = function(){
         this._service.getData(this.endpoint, 5)
             .subscribe((response) => {
         console.log("API sent", response);

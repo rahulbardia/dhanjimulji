@@ -2,17 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Indent Inputs</title>
+    <title>Indent Form</title>
 </head>
 <body>
-  <p>
-    RAHUL Indents Works!!!
-
-  </p>
-  <!--<app-buyer></app-buyer>-->
-
-
-
-  <router-outlet></router-outlet>
+<H3>INDENT</H3>
+  <form class="container"
+        #indentForm = "ngForm"
+        (ngSubmit) = onSubmit(indentForm.value)>
+    <label>Tenant</label>
+    <input type="text" name="tenant" ngModel>
+    <br>
+    <label>Sub-tenant</label>
+    <input type="text" name="sub_tenant" ngModel>
+    <br>
+    <label>Indent Number</label>
+    <input type="text" name="indent_no" ngModel>
+    <br>
+    <label>Buyer</label>
+    <input type="text" name="buyer" ngModel>
+    <br>
+    <label>Buyer Child</label>
+    <input type="text" name="buyer_child" ngModel>
+    <br>
+    <label>Supplier</label>
+    <input type="text" name="supplier" ngModel>
+    <br>
+    <label>Supplier Child</label>
+    <input type="text" name="supplier_child" ngModel>
+    <br>
+    <label>Bank</label>
+    <input type="text" name="bank_name" ngModel>
+    <br>
+    <label>Cash Discount</label>
+    <input type="text" name="cash_discount" ngModel>
+    <br>
+    <label>Scheme</label>
+    <input type="text" name="scheme" ngModel>
+    <br>
+    <label>Payment Day</label>
+    <input type="text" name="payment_day" ngModel>
+    <br>
+    <label>Credit Day</label>
+    <input type="text" name="credit_day" ngModel>
+    <br>
+    <label>Interest Rate</label>
+    <input type="text" name="interest_rate" ngModel>
+    <br>
+    <label>Salesman</label>
+    <input type="text" name="salesman" ngModel>
+    <br>
+    <label>Transport</label>
+    <input type="text" name="transport" ngModel>
+    <br>
+    <label>Indent From</label>
+    <input type="text" name="indent_from" ngModel>
+    <br>
+    <label>Indent To</label>
+    <input type="text" name="indent_to" ngModel>
+    <br>
+    <label>Export To</label>
+    <input type="text" name="export_to" ngModel>
+    <br>
+    <label>Indent made by</label>
+    <input type="text" name="prepared_by" ngModel>
+    <br>
+    <label>Remarks</label>
+    <input type="text" name="remarks" ngModel>
+    <br>
+    <br><br><br>
+    <input type="submit" name="Submit">
+  </form>
+<button (click)="get_data()">GET API</button>
 </body>
 </html>
