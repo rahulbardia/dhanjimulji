@@ -26,6 +26,13 @@ class BaseSerializer(serializers.ModelSerializer):
         fields = ('id', 'created_date', 'updated_date', 'active')
 
 
+class LoginSerializer(BaseSerializer):
+    class Meta:
+        model = DmtcUser
+        fields = ('tenant', 'sub_tenant', 'user', 'place', 'address',
+                  'mobile_no', 'email', 'is_admin')
+
+
 class TenantSerializer(BaseSerializer):
     class Meta:
         model = Tenant

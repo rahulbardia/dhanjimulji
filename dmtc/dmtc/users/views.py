@@ -7,6 +7,8 @@ from rest_framework import status
 
 from django.contrib.auth.models import User
 
+from django.contrib.auth import authenticate, login
+
 # Models
 from models import BaseModel, Tenant, DmtcUser, Buyer, Supplier, SupplierInventory,\
     Salesman
@@ -14,7 +16,7 @@ from models import BaseModel, Tenant, DmtcUser, Buyer, Supplier, SupplierInvento
 # Serializers
 from serializers import BaseSerializer, TenantSerializer, DmtcUserSerializer,\
     DmtcBuyerSerializer, DmtcSupplierSerializer, DmtcSupplierInventorySerializer,\
-    DmtcSalesmanSerializer
+    DmtcSalesmanSerializer, LoginSerializer
 
 # My Libs
 from dmtc import utils
@@ -36,7 +38,7 @@ class BaseApiView(APIView):
 
     def post(self, request):
         data = request.body
-        utils.check_tenant(data)
+        tenant_provided = utils.check_tenant(data)
         data = json.loads(data)
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
@@ -74,6 +76,66 @@ class DmtcTenant(BaseApiView):
     def post(self, request):
         data = request.data
         serializer = TenantSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DmtcLogin(BaseApiView):
+    """
+    dmtc user login
+    When creating a user using Django Admin, also use post API
+    to make an entry for Dmtc User to assign tenant/Sub-tenant
+    to a USER.
+
+    TBD
+
+    """
+# Custom login
+
+    # def get(self, request):
+    #     data = request.GET
+    #     print "HEYHEYHEY"
+    #     print data['tenant']
+    #     try:
+    #         user_obj = User.objects.filter(tenant_id=data['tenant']).values()[0]
+    #         print user_obj
+    #         print user_obj['id'], type(user_obj['id'])
+    #         # for k,v in user_obj:
+    #         #     print k, v ,"LALALALA"
+    #         dmtc_user_obj = DmtcUser.objects.filter(user_id=user_obj['id']).values()[0]
+    #         user_tenant = dmtc_user_obj['tenant_id']
+    #         print int(user_tenant)
+    #         serializer = DmtcUserSerializer(data=dmtc_user_obj)
+    #
+    #         return Response(utils.set_cookies(serializer.initial_data, 'tenant', user_tenant))
+    #     except Exception as e:
+    #         print e
+    #         return Response(status=401)
+
+# Django std login
+
+    def get(self, request):
+        username = request.GET['username']
+        password = request.GET['password']
+        print username, password
+        user = authenticate(request, username=username, password=password)
+        print user.id, "user id"
+        if user is not None:
+            login(request, user)
+            dmtc_user_obj = DmtcUser.objects.filter(user_id=user.id)
+            print dmtc_user_obj
+            # print dmtc_user_obj.id
+            # Redirect to a success page.
+            return Response(dmtc_user_obj[0].tenant_id)
+        else:
+            print "Oops"
+
+    def post(self, request):
+        data = request.POST
+        print data
+        serializer = LoginSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

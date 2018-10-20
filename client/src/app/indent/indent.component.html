@@ -6,12 +6,12 @@
 </head>
 <body>
 <H3>INDENT</H3>
-  <form class="container"
+  <form class="container" id="indent_form"
         #indentForm = "ngForm"
         (ngSubmit) = onSubmit(indentForm.value)>
-    <label>Tenant</label>
-    <input type="text" name="tenant" ngModel>
-    <br>
+    <!--<label>Tenant</label>-->
+    <!--<input type="text" name="tenant" ngModel>-->
+    <!--<br>-->
     <label>Sub-tenant</label>
     <input type="text" name="sub_tenant" ngModel>
     <br>
@@ -70,8 +70,26 @@
     <input type="text" name="remarks" ngModel>
     <br>
     <br><br><br>
-    <input type="submit" name="Submit">
   </form>
+
+<form class="form-inline" id="order_form"
+        #indentOrderForm = "ngForm"
+        (ngSubmit) = onSubmit(indentOrderForm.value,indentForm.value)>
+    <!--<label>Tenant</label>-->
+    <!--<input type="text" name="tenant">-->
+    <!--<br>-->
+    <label>Sub-tenant</label>
+    <input type="text" name="sub_tenant" ngModel>
+    <br>
+    <label>Bales</label>
+    <input type="text" name="bales" ngModel>
+    <br>
+    <label>Remarks</label>
+    <input type="text" name="remarks" ngModel>
+    <br>
+    <input type="submit" name="Submit">
+
+</form>
 <button (click)="get_data()">GET API</button>
 </body>
 </html>

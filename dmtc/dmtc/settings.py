@@ -154,3 +154,6 @@ STATICFILES_FINDERS = (
 
 ANGULAR_URL = '/ng/'
 ANGULAR_ROOT = os.path.join(BASE_DIR, 'client/')
+
+# Cookies Setting
+SESSION_COOKIE_SECURE = False

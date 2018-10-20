@@ -27,7 +27,7 @@ export class BuyerComponent implements OnInit {
   };
 
   get_data = function(){
-        this._service.getData(this.endpoint, 5)
+        this._service.getData(this.endpoint, this.tenant_id)
             .subscribe((response) => {
         console.log("API sent", response);
       });

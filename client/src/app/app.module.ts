@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from "@angular/forms"
 import {HttpModule} from "@angular/http"
 import {RouterModule} from "@angular/router"
+import { StorageServiceModule} from 'angular-webstorage-service';
 
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { SalesmanComponent } from './users/salesman/salesman.component';
 import { BuyerChildComponent } from './users/buyer/buyer-child/buyer-child.component';
 import { SupplierChildComponent } from './users/supplier/supplier-child/supplier-child.component';
 import {CommonService} from "./shared/common.service";
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -27,13 +29,19 @@ import {CommonService} from "./shared/common.service";
     SupplierInventoryComponent,
     SalesmanComponent,
     BuyerChildComponent,
-    SupplierChildComponent
+    SupplierChildComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    StorageServiceModule,
     RouterModule.forRoot([
+      {
+        path: 'login',
+        component: LoginComponent
+      },
       {
         path: 'users',
         component: UsersComponent

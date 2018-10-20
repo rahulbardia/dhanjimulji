@@ -9,10 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./supplier.component.css']
 })
 export class SupplierComponent implements OnInit {
-data: any = null;
-endpoint = '/users/supplier/';
+  data: any = null;
+  endpoint = '/users/supplier/';
   constructor(private http: Http, private _service: CommonService) {
-
   }
 
   ngOnInit() {
@@ -27,7 +26,7 @@ endpoint = '/users/supplier/';
   };
 
   get_data = function(){
-        this._service.getData(this.endpoint, 5)
+        this._service.getData(this.endpoint, this.tenant_id)
             .subscribe((response) => {
         console.log("API sent", response);
       });

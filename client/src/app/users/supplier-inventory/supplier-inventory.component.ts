@@ -1,17 +1,21 @@
 import 'rxjs/Rx';
+import { Inject, Injectable } from '@angular/core';
 import { CommonService } from "./../../shared/common.service"
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-supplier-inventory',
   templateUrl: './supplier-inventory.component.html',
   styleUrls: ['./supplier-inventory.component.css']
 })
+
+@Injectable()
 export class SupplierInventoryComponent implements OnInit {
   data: any = null;
   endpoint = '/users/supplierinventory/';
-  constructor(private http: Http, private _service: CommonService) {
+  constructor(private http: Http, private _service: CommonService, @Inject(SESSION_STORAGE) private storage: StorageService) {
   }
 
   ngOnInit() {
@@ -26,8 +30,8 @@ export class SupplierInventoryComponent implements OnInit {
   };
 
   get_data = function(){
-    console.log("Get data called");
-        this._service.getData(this.endpoint, 5)
+    console.log("Get data called with tenant: " + this.storage.get("tenant"));
+        this._service.getData(this.endpoint, this.tenant_id)
             .subscribe((response) => {
         console.log("API sent", response);
       });
