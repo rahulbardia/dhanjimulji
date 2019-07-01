@@ -121,7 +121,7 @@ class DmtcLogin(BaseApiView):
         password = request.GET['password']
         print username, password
         user = authenticate(request, username=username, password=password)
-        print user.id, "user id"
+        print user, "user id"
         if user is not None:
             login(request, user)
             dmtc_user_obj = DmtcUser.objects.filter(user_id=user.id)
@@ -130,7 +130,7 @@ class DmtcLogin(BaseApiView):
             # Redirect to a success page.
             return Response(dmtc_user_obj[0].tenant_id)
         else:
-            print "Oops"
+            return Response("Invalid username/password")
 
     def post(self, request):
         data = request.POST
@@ -149,14 +149,16 @@ class DmtcTenantUser(BaseApiView):
     """
     def get(self, request):
         data = request.GET
-        # if 'tenant' not in data:
-        #     return Response('No tentant passed', status=status.HTTP_400_BAD_REQUEST)
+        if 'tenant' not in data:
+            return Response('No tentant passed', status=status.HTTP_400_BAD_REQUEST)
         tenant = data['tenant'] if 'tenant' in data else None
         if tenant:
-            tenant_obj = Tenant.objects.filer(id=tenant)
+            tenant_obj = Tenant.objects.filter(id=tenant)
         else:
             tenant_obj = Tenant.objects.all()
-        user_obj = User()
+        user_obj = DmtcUser.objects.filter(tenant__in=[obj.id for obj in tenant_obj])
+        serializer = DmtcUserSerializer(user_obj, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
         """
@@ -178,7 +180,6 @@ class DmtcTenantUser(BaseApiView):
             user.set_password(data.get('password', 'password'))
             user.save()
         except Exception as e:
-            print(e, 'cannot save user')
             raise e
         dmtc_user = {}
         tenant_obj = Tenant.objects.filter(id=int(data['tenant']))
@@ -192,12 +193,12 @@ class DmtcTenantUser(BaseApiView):
         dmtc_user['mobile_no'] = data.get('mobile_no', None)
         dmtc_user['email'] = data.get('email', None)
         dmtc_user['is_admin'] = data.get('is_admin', False)
-        print(dmtc_user)
         serializer = DmtcUserSerializer(data=dmtc_user)
         if serializer.is_valid():
             print("It is valid")
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
+        print serializer.errors
         return Response(status=status.HTTP_304_NOT_MODIFIED)
 
 

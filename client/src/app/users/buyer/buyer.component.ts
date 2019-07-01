@@ -32,4 +32,5 @@ export class BuyerComponent implements OnInit {
         console.log("API sent", response);
       });
   };
+
 }

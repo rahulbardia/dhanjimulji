@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'dmtc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dmtc_models1',
-        'USER': 'dmtc2',
+        'NAME': 'dmtc',
+        'USER': 'dmtc',
         'PASSWORD': 'dmtc',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 

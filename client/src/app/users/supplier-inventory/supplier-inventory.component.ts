@@ -31,7 +31,8 @@ export class SupplierInventoryComponent implements OnInit {
 
   get_data = function(){
     console.log("Get data called with tenant: " + this.storage.get("tenant"));
-        this._service.getData(this.endpoint, this.tenant_id)
+    //  TODO: update storage tenant to this.tenant_id(currently throwing error)
+        this._service.getData(this.endpoint, this.storage.get("tenant"))
             .subscribe((response) => {
         console.log("API sent", response);
       });

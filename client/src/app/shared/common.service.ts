@@ -13,7 +13,7 @@ export class CommonService {
   options: RequestOptions;
   public user = config.username;
   public password = config.password;
-  tenant_id = this.storage.get('tenant');
+  public tenant_id = this.storage.get('tenant');
 
   constructor(private _http: Http, @Inject(SESSION_STORAGE) private storage: StorageService) {
     this.headers = new Headers({
@@ -37,10 +37,10 @@ export class CommonService {
 
   postForm(endpoint, form_val): Observable<any> {
     console.log("common service to post");
-        console.log(form_val);
-        return this._http.post(config.WebApiURL + endpoint, form_val, {headers: this.headers})
-            .map(this.extractData)
-            .catch(this.handelError);
+    console.log(form_val);
+    return this._http.post(config.WebApiURL + endpoint, form_val, {headers: this.headers})
+        .map(this.extractData)
+        .catch(this.handelError);
     }
 
   getData(endpoint, tenantId): Observable<any>{
