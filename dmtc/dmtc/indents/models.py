@@ -12,9 +12,9 @@ from dmtc.users.models import BaseModel, Tenant, SubTenant, Buyer, \
 
 class Transport(BaseModel):
     transport_name = models.CharField(max_length=255)
-    mobile_no = models.CharField(max_length=12)
+    mobile_no = models.CharField(max_length=12, null=True)
     office_no = models.CharField(max_length=12, null=True)
-    email = models.EmailField()
+    email = models.EmailField(null=True)
 
 
 class Indents(BaseModel):
@@ -33,8 +33,8 @@ class Indents(BaseModel):
     credit_day = models.IntegerField()
     interest_rate = models.FloatField()
     pending = models.BooleanField(default=True)
-    salesman = models.ForeignKey(Salesman)
-    transport = models.ForeignKey(Transport)
+    salesman = models.ForeignKey(Salesman, null=True)
+    transport = models.ForeignKey(Transport, null=True)
     indent_from = models.CharField(max_length=255)
     indent_to = models.CharField(max_length=255)
     export_to = models.CharField(max_length=255)
