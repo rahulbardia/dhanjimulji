@@ -38,6 +38,7 @@ export class CommonService {
   postForm(endpoint, form_val): Observable<any> {
     console.log("common service to post");
     console.log(form_val);
+    form_val.tenant = this.tenant_id;
     return this._http.post(config.WebApiURL + endpoint, form_val, {headers: this.headers})
         .map(this.extractData)
         .catch(this.handelError);
