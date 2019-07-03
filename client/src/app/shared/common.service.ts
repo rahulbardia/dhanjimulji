@@ -36,7 +36,7 @@ export class CommonService {
   }
 
   postForm(endpoint, form_val): Observable<any> {
-    console.log("common service to post");
+    console.log("common service to post with tenant_id : %s", this.tenant_id);
     console.log(form_val);
     form_val.tenant = this.tenant_id;
     return this._http.post(config.WebApiURL + endpoint, form_val, {headers: this.headers})
@@ -44,11 +44,14 @@ export class CommonService {
         .catch(this.handelError);
     }
 
-  getData(endpoint, tenantId): Observable<any>{
-    console.log("common service to get");
-    // this.tenant_id = console.log("TENANT ID :  " + this.tenant_id);
-    // console.log("TENANT ID 2:  " + this.tenant_id);
-    return this._http.get(config.WebApiURL + endpoint + '?tenant=' + tenantId, {headers: this.headers})
+  getData(endpoint, filter): Observable<any>{
+    console.log("common service to get with tenant_id: %s", this.tenant_id);
+    let url_string = config.WebApiURL + endpoint + '?tenant=' + this.tenant_id;
+    for (let key in filter){
+      url_string = url_string + "&" + key + "=" + filter[key];
+    }
+    console.log("url_string is: %s", url_string);
+    return this._http.get(url_string, {headers: this.headers})
       .map(this.extractData)
       .catch(this.handelError);
   }

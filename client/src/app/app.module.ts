@@ -68,11 +68,11 @@ import { LoginComponent } from './login/login.component';
         component: SalesmanComponent
       },
       {
-        path: 'users/buyer/buyerchild',
+        path: 'users/buyer/buyerchild/:id',
         component: BuyerChildComponent
       },
       {
-        path: 'users/supplier/supplierchild',
+        path: 'users/supplier/supplierchild/:id',
         component: SupplierChildComponent
       }
     ]),

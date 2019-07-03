@@ -7,6 +7,7 @@
 import datetime
 from django.conf import settings
 
+
 def check_tenant(data):
     if 'tenant' not in data:
         return False

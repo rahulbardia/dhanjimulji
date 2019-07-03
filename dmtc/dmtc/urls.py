@@ -21,7 +21,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 # User Views
 from dmtc.users.views import DmtcTenant, DmtcTenantUser, DmtcBuyer, \
-    DmtcSupplier, DmtcSupplierInventory, DmtcSalesman, DmtcLogin
+    DmtcSupplier, DmtcSupplierInventory, DmtcSalesman, DmtcLogin, \
+    DmtcBuyerChild, DmtcSupplierChild
 
 # Indent Views
 from dmtc.indents.views import DmtcTransport, DmtcIndent, DmtcIndentOrder, DmtcConfirmationOrder
@@ -43,7 +44,9 @@ urlpatterns_user = [
     url(r'^users/tenant/', DmtcTenant.as_view()),
     url(r'^users/user/$', DmtcTenantUser.as_view()),
     url(r'^users/buyer/$', DmtcBuyer.as_view()),
+    url(r'^users/buyerchild/$', DmtcBuyerChild.as_view()),
     url(r'^users/supplier/$', DmtcSupplier.as_view()),
+    url(r'^users/supplierchild/$', DmtcSupplierChild.as_view()),
     url(r'^users/supplierinventory/$', DmtcSupplierInventory.as_view()),
     url(r'^users/salesman/$', DmtcSalesman.as_view()),
 ]

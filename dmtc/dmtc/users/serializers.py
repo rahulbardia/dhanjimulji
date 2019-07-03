@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from models import BaseModel, Tenant, DmtcUser,\
-    Buyer, Supplier, SupplierInventory, Salesman
+    Buyer, Supplier, SupplierInventory, Salesman, \
+    BuyerChild, SupplierChild
 
 
 # class TenantSerializer(serializers.Serializer):
@@ -55,12 +56,26 @@ class DmtcBuyerSerializer(BaseSerializer):
                   'credit_limit', 'total_credit')
 
 
+class DmtcBuyerChildSerializer(BaseSerializer):
+    class Meta:
+        model = BuyerChild
+        fields = ('id', 'tenant', 'sub_tenant', 'buyer', 'name', 'place', 'address',
+                  'mobile_no', 'office_no', 'email', 'gst_no', 'pan_no')
+
+
 class DmtcSupplierSerializer(BaseSerializer):
     class Meta:
         model = Supplier
         fields = ('id', 'tenant', 'sub_tenant', 'name', 'place', 'address',
                   'mobile_no', 'office_no', 'email', 'gst_no', 'pan_no',
                   'commission_percentage', 'credit_limit', 'total_credit')
+
+
+class DmtcSupplierChildSerializer(BaseSerializer):
+    class Meta:
+        model = SupplierChild
+        fields = ('id', 'tenant', 'sub_tenant', 'supplier', 'name', 'place', 'address',
+                  'mobile_no', 'office_no', 'email', 'gst_no', 'pan_no', 'commission_percentage')
 
 
 class DmtcSupplierInventorySerializer(BaseSerializer):

@@ -8,16 +8,16 @@
   <H3>SUPPLIER CHILD</H3>
   <form class="container"
         #supplierChildForm = "ngForm"
-        (ngSubmit) = onSubmit(supplierChildForm)>
+        (ngSubmit) = onSubmit(supplierChildForm.value)>
     <!--<label>Tenant</label>-->
     <!--<input type="text" name="tenant" ngModel>-->
     <!--<br>-->
     <!--<label>Sub-tenant</label>-->
     <!--<input type="text" name="sub_tenant" ngModel>-->
     <!--<br>-->
-    <label>Supplier</label>
-    <input type="text" name="supplier" ngModel>
-    <br>
+    <!--<label>Supplier</label>-->
+    <!--<input type="text" name="supplier" ngModel>-->
+    <!--<br>-->
     <label>NAME</label>
     <input type="text" name="name" ngModel>
     <br>
@@ -44,10 +44,12 @@
     <br>
     <label>CREDIT LIMIT</label>
     <input type="text" name="credit_limit" ngModel>
+    <br><label>COMMISSION PERCENTAGE</label>
+    <input type="text" name="commission_percentage" ngModel>
     <br><br><br>
     <input type="submit" name="Submit">
   </form>
-
+<button (click)="get_data()">GET API</button>
 </body>
 </html>
 <app-supplier></app-supplier>

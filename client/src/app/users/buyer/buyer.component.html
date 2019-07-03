@@ -38,4 +38,4 @@
     <input type="submit" name="Submit">
   </form>
 <button (click)="get_data()">GET API</button>
-<a routerLink="buyerchild">Add Child</a>
+<button [routerLink]="['buyerchild/', buyer_id]">Add Child</button>

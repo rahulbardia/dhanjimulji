@@ -22,11 +22,13 @@ export class SupplierComponent implements OnInit {
             .subscribe(
             data => {
               console.log("data posted", data);
+              this.supplier_id = data.id;
+              console.log("Supplier_ID of the saved data is :%s", this.supplier_id)
             });
   };
 
   get_data = function(){
-        this._service.getData(this.endpoint, this.tenant_id)
+        this._service.getData(this.endpoint)
             .subscribe((response) => {
         console.log("API sent", response);
       });

@@ -11,12 +11,12 @@ from django.contrib.auth import authenticate, login
 
 # Models
 from models import BaseModel, Tenant, DmtcUser, Buyer, Supplier, SupplierInventory,\
-    Salesman
+    Salesman, BuyerChild, SupplierChild
 
 # Serializers
 from serializers import BaseSerializer, TenantSerializer, DmtcUserSerializer,\
     DmtcBuyerSerializer, DmtcSupplierSerializer, DmtcSupplierInventorySerializer,\
-    DmtcSalesmanSerializer, LoginSerializer
+    DmtcSalesmanSerializer, LoginSerializer, DmtcBuyerChildSerializer, DmtcSupplierChildSerializer
 
 # My Libs
 from dmtc import utils
@@ -38,12 +38,13 @@ class BaseApiView(APIView):
 
     def post(self, request):
         data = request.body
-        tenant_provided = utils.check_tenant(data)
+        if not utils.check_tenant(data):
+            raise Exception("No tenant provided")
         data = json.loads(data)
         serializer = self.serializer_class(data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         print serializer.errors
         return Response(serializer.errors, status=status.HTTP_304_NOT_MODIFIED)
 
@@ -222,6 +223,27 @@ class DmtcBuyer(BaseApiView):
         return super(DmtcBuyer, self).get(request)
 
 
+class DmtcBuyerChild(BaseApiView):
+    """
+    Tenant level Buyer information
+
+    """
+    def __init__(self):
+        super(DmtcBuyerChild, self).__init__()
+        self.serializer_class = DmtcBuyerChildSerializer
+        self.model_class = BuyerChild
+        self.filter_list = ['tenant', 'buyer']
+
+    def post(self, request):
+        return super(DmtcBuyerChild, self).post(request)
+
+    def get(self, request):
+        data = request.GET
+        if not utils.check_tenant(data):
+            return Response('No Tenant provided', status=status.HTTP_403_FORBIDDEN)
+        return super(DmtcBuyerChild, self).get(request)
+
+
 class DmtcSupplier(BaseApiView):
     """
     Tenant level Supplier Information
@@ -240,6 +262,27 @@ class DmtcSupplier(BaseApiView):
         if not utils.check_tenant(data):
             return Response('No Tenant provided', status=status.HTTP_403_FORBIDDEN)
         return super(DmtcSupplier, self).get(request)
+
+
+class DmtcSupplierChild(BaseApiView):
+    """
+    Tenant level Buyer information
+
+    """
+    def __init__(self):
+        super(DmtcSupplierChild, self).__init__()
+        self.serializer_class = DmtcSupplierChildSerializer
+        self.model_class = SupplierChild
+        self.filter_list = ['tenant', 'supplier']
+
+    def post(self, request):
+        return super(DmtcSupplierChild, self).post(request)
+
+    def get(self, request):
+        data = request.GET
+        if not utils.check_tenant(data):
+            return Response('No Tenant provided', status=status.HTTP_403_FORBIDDEN)
+        return super(DmtcSupplierChild, self).get(request)
 
 
 class DmtcSupplierInventory(BaseApiView):

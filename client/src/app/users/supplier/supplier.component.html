@@ -50,7 +50,7 @@
 
 <button (click)="get_data()">GET API</button>
 
-<a routerLink="supplierchild">Add Supplier Child</a>
+<button [routerLink]="['supplierchild/', supplier_id]">Add Child</button>
 
 </body>
 </html>

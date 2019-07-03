@@ -23,11 +23,13 @@ export class BuyerComponent implements OnInit {
             .subscribe(
             data => {
               console.log("data posted", data);
+              this.buyer_id = data.id;
+              console.log("Buyer_ID of the saved data is :%s", this.buyer_id)
             });
   };
 
   get_data = function(){
-        this._service.getData(this.endpoint, this.tenant_id)
+        this._service.getData(this.endpoint)
             .subscribe((response) => {
         console.log("API sent", response);
       });
