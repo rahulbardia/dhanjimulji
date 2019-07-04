@@ -24,6 +24,7 @@
     ngOnInit() {
       this.get_buyer_list();
       this.get_supplier_list();
+      this.get_salesman_list();
       this.invoiceForm = this._fb.group({
       itemRows: this._fb.array([this.initItemRows()]) // here
     });
@@ -51,14 +52,14 @@
       // remove the chosen row
       control.removeAt(index);
   }
-    onSubmit = function(my_form: any, my_order_form: any){
-      console.log("indent form value", my_form, my_order_form, this.form);
-          this._service.postForm(this.endpoint, my_form)
-              .subscribe(
-              data => {
-                console.log("data posted", data);
-              });
-    };
+  onSubmit = function(my_form: any, my_order_form: any){
+    console.log("indent form value", my_form, my_order_form, this.form);
+        this._service.postForm(this.endpoint, my_form)
+            .subscribe(
+            data => {
+              console.log("data posted", data);
+            });
+  };
 
     submit_forms = function () {
       let indent_form = document.getElementById('indent_form').onsubmit;
@@ -92,4 +93,22 @@
           this.supplier_list = response;
         });
     };
+    get_supplier_child_list = function(selected_buyer: any){
+      console.log("Selected id is : %s", selected_buyer.id);
+      // let buyer_endpoint = '/users/supplier/';
+      // this._service.getData(buyer_endpoint, this.tenant_id)
+      //         .subscribe((response) => {
+      //     console.log("API sent", response);
+      //     this.supplier_list = response;
+      //   });
+    };
+
+    get_salesman_list = function () {
+      let salesman_endpoint = '/users/salesman/';
+      this._service.getData(salesman_endpoint)
+              .subscribe((response) => {
+          console.log("API sent", response);
+          this.salesman_list = response;
+        });
+    }
   }
