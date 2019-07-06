@@ -6,79 +6,124 @@
 </head>
 <body>
 <H3>INDENT</H3>
-  <form class="container" id="indent_form"
-        #indentForm = "ngForm"
-        (ngSubmit) = onSubmit(indentForm.value)>
-    <!--<label>Tenant</label>-->
-    <!--<input type="text" name="tenant" ngModel>-->
+  <!--<form class="container" id="indent_form"-->
+        <!--#indentForm = "ngForm"-->
+        <!--(ngSubmit) = onSubmit(indentForm.value)>-->
+    <!--&lt;!&ndash;<label>Tenant</label>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text" name="tenant" ngModel>&ndash;&gt;-->
+    <!--&lt;!&ndash;<br>&ndash;&gt;-->
+    <!--&lt;!&ndash;<label>Sub-tenant</label>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text" name="sub_tenant" ngModel>&ndash;&gt;-->
+    <!--&lt;!&ndash;<br>&ndash;&gt;-->
+    <!--<label>Indent Number</label>-->
+    <!--<input type="text" name="indent_no" ngModel>-->
     <!--<br>-->
-    <!--<label>Sub-tenant</label>-->
-    <!--<input type="text" name="sub_tenant" ngModel>-->
+    <!--<label>Buyer</label>-->
+    <!--<select  name="buyer" [(ngModel)]="buyer" (change)="get_supplier_child_list(buyer.valueOf())">-->
+      <!--<option *ngFor="let buyer of buyer_list" [ngValue]="buyer.id">{{ buyer.name}}</option>-->
+    <!--</select>-->
     <!--<br>-->
-    <label>Indent Number</label>
-    <input type="text" name="indent_no" ngModel>
-    <br>
-    <label>Buyer</label>
-    <select  name="buyer" [(ngModel)]="buyer" (change)="get_supplier_child_list(buyer.valueOf())">
-      <option *ngFor="let buyer of buyer_list" [ngValue]="buyer.id">{{ buyer.name}}</option>
-    </select>
-    <br>
-    <label>Buyer Child</label>
-    <input type="text" name="buyer_child" ngModel>
-    <br>
-    <label>Supplier</label>
-    <select  name="supplier" [(ngModel)]="supplier">
-      <option *ngFor="let supplier of supplier_list" [ngValue]="supplier.id">{{ supplier.name}}</option>
-    </select>
-    <br>
-    <label>Supplier Child</label>
-    <input type="text" name="supplier_child" ngModel>
-    <br>
-    <label>Bank</label>
-    <input type="text" name="bank_name" ngModel>
-    <br>
-    <label>Cash Discount</label>
-    <input type="text" name="cash_discount" ngModel>
-    <br>
-    <label>Scheme</label>
-    <input type="text" name="scheme" ngModel>
-    <br>
-    <label>Payment Day</label>
-    <input type="text" name="payment_day" ngModel>
-    <br>
-    <label>Credit Day</label>
-    <input type="text" name="credit_day" ngModel>
-    <br>
-    <label>Interest Rate</label>
-    <input type="text" name="interest_rate" ngModel>
-    <br>
-    <label>Salesman</label>
-    <select  name="salesman" [(ngModel)]="salesman">
-      <option *ngFor="let salesman of salesman_list" [ngValue]="salesman.id">{{ salesman.name}}</option>
-    </select>
-    <br>
-    <label>Transport</label>
-    <input type="text" name="transport" ngModel>
-    <br>
-    <label>Indent From</label>
-    <input type="text" name="indent_from" ngModel>
-    <br>
-    <label>Indent To</label>
-    <input type="text" name="indent_to" ngModel>
-    <br>
-    <label>Export To</label>
-    <input type="text" name="export_to" ngModel>
-    <br>
-    <label>Indent made by</label>
-    <input type="text" name="prepared_by" ngModel>
-    <br>
-    <label>Remarks</label>
-    <input type="text" name="remarks" ngModel>
-    <br>
-    <br><br><br>
-    <input type="submit" name="Submit">
-  </form>
+    <!--<label>Buyer Child</label>-->
+    <!--<input type="text" name="buyer_child" ngModel>-->
+    <!--<br>-->
+    <!--<label>Supplier</label>-->
+    <!--<select  name="supplier" [(ngModel)]="supplier">-->
+      <!--<option *ngFor="let supplier of supplier_list" [ngValue]="supplier.id">{{ supplier.name}}</option>-->
+    <!--</select>-->
+    <!--<br>-->
+    <!--<label>Supplier Child</label>-->
+    <!--<input type="text" name="supplier_child" ngModel>-->
+    <!--<br>-->
+    <!--<label>Bank</label>-->
+    <!--<input type="text" name="bank_name" ngModel>-->
+    <!--<br>-->
+    <!--<label>Cash Discount</label>-->
+    <!--<input type="text" name="cash_discount" ngModel>-->
+    <!--<br>-->
+    <!--<label>Scheme</label>-->
+    <!--<input type="text" name="scheme" ngModel>-->
+    <!--<br>-->
+    <!--<label>Payment Day</label>-->
+    <!--<input type="text" name="payment_day" ngModel>-->
+    <!--<br>-->
+    <!--<label>Credit Day</label>-->
+    <!--<input type="text" name="credit_day" ngModel>-->
+    <!--<br>-->
+    <!--<label>Interest Rate</label>-->
+    <!--<input type="text" name="interest_rate" ngModel>-->
+    <!--<br>-->
+    <!--<label>Salesman</label>-->
+    <!--<select  name="salesman" [(ngModel)]="salesman">-->
+      <!--<option *ngFor="let salesman of salesman_list" [ngValue]="salesman.id">{{ salesman.name}}</option>-->
+    <!--</select>-->
+    <!--<br>-->
+    <!--<label>Transport</label>-->
+    <!--<input type="text" name="transport" ngModel>-->
+    <!--<br>-->
+    <!--<label>Indent From</label>-->
+    <!--<input type="text" name="indent_from" ngModel>-->
+    <!--<br>-->
+    <!--<label>Indent To</label>-->
+    <!--<input type="text" name="indent_to" ngModel>-->
+    <!--<br>-->
+    <!--<label>Export To</label>-->
+    <!--<input type="text" name="export_to" ngModel>-->
+    <!--<br>-->
+    <!--<label>Indent made by</label>-->
+    <!--<input type="text" name="prepared_by" ngModel>-->
+    <!--<br>-->
+    <!--<label>Remarks</label>-->
+    <!--<input type="text" name="remarks" ngModel>-->
+    <!--<br>-->
+    <!--<br><br><br>-->
+    <!--<input type="submit" name="Submit">-->
+  <!--</form>-->
+  <button (click)="cloneItem($event, info)" class="btn inline btn-success">
+            Add form input group
+         </button>
+  <div class="row">
+            <div class="col-md-8">
+            <form name="userForm" onsubmit="submitForm()" novalidate class="form-inline">
+               <div *ngFor="let info of informations; let i=index" >
 
+                 <div style="clear: both">&nbsp;</div>
+    <div class="row" style="float: left">
+
+                  <div class="col-md-8">
+                    <div class="form-group">
+                         <label class="sr-only" for="input-name-{{i}}">Tenant</label>
+                         <input type="text"
+                                name="tenant"
+                                class="form-control"
+                                id="input-name-{{i}}"
+                                placeholder="Tenant"
+                                [ngModel]="info.tenant"
+                                >
+                    </div>
+                  </div>
+    </div>
+                 <div class="row">
+
+                  <div class="col-md-8">
+                    <div class="form-group">
+                         <label class="sr-only" for="input-name-{{i}}">Buyer</label>
+                         <input type="text"
+                                name="buyer"
+                                class="form-control"
+                                id="input-name-2"
+                                placeholder="Buyer"
+                                [ngModel]="info.buyer"
+                                >
+                    </div>
+                  </div>
+    </div>
+                 <div class="col-md-4">
+                       <button (click)="removeItem(i)" class="btn delete-field-{{i}}">Delete</button>
+                 </div>
+               </div>
+  </form>
+            </div>
+  </div>
 <!--<form class="form-inline" id="order_form"-->
         <!--#indentOrderForm = "ngForm"-->
         <!--(ngSubmit) = onSubmit(indentOrderForm.value,indentForm.value)>-->
@@ -169,6 +214,9 @@
 
 
 <!--</form>-->
+<div>------------------------------------------</div>
+<button (click)="addNewRow()">add column</button>
+<div>------------------------------------------</div>
 <button (click)="get_data()">GET API</button>
 </body>
 </html>
