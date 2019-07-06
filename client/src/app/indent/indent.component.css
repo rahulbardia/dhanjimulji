@@ -1,0 +1,12 @@
+.container-main {
+  padding-top: 15px;
+}
+   .content {
+      background:#ededed;
+      height:100%;
+      padding:20px;
+   }
+
+   .row {
+      margin:10px 0;
+   }
