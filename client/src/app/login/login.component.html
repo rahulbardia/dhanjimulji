@@ -1,0 +1,25 @@
+<!-- <app-navbar></app-navbar> -->
+
+<div class="body">
+    <mat-card class="card">
+      <form class="form" [formGroup]="createForm">
+      <mat-form-field class="example-full-width">
+        <input type="email" autocomplete="off" matInput formControlName="username">
+            <!-- <mat-placeholder class="placeholder">Name </mat-placeholder> -->
+            <mat-error>Please enter valid Name</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input type="password" autocomplete="off" matInput  formControlName="password">
+                <!-- <mat-placeholder class="placeholder">Password </mat-placeholder> -->
+                <mat-error>Please enter valid password</mat-error>
+            </mat-form-field>
+            <button mat-raised-button (click)="LogIn()" class="loginbtn"><div class="Log-in">Log in</div></button>
+      </form>
+      <div class="login-foot">
+          Not able to login to your account? <span>Contact us. <span><a href="tel:+18662926227">(866)292-6227</a></span><span> / </span><span><a href="mailto:customercare@awana.org">customercare@awana.org</a></span></span>
+        </div>
+        </mat-card>
+
+    
+  
+</div>
