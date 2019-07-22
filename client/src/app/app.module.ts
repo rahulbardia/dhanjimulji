@@ -4,6 +4,11 @@ import {FormsModule,FormGroup,ReactiveFormsModule} from "@angular/forms"
 import {HttpModule} from "@angular/http"
 import {RouterModule} from "@angular/router"
 import { StorageServiceModule} from 'angular-webstorage-service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -17,6 +22,7 @@ import { BuyerChildComponent } from './users/buyer/buyer-child/buyer-child.compo
 import { SupplierChildComponent } from './users/supplier/supplier-child/supplier-child.component';
 import {CommonService} from "./shared/common.service";
 import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -30,13 +36,20 @@ import { LoginComponent } from './login/login.component';
     SalesmanComponent,
     BuyerChildComponent,
     SupplierChildComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
     StorageServiceModule,
     RouterModule.forRoot([
       {
@@ -74,7 +87,12 @@ import { LoginComponent } from './login/login.component';
       {
         path: 'users/supplier/supplierchild/:id',
         component: SupplierChildComponent
-      }
+      },
+      {
+        path:"*",
+        component:LoginComponent
+      },
+      {path:'', redirectTo:'/login', pathMatch:'full'}
     ]),
     // RouterModule.forChild(listLazyRoutes())
   ],

@@ -1,94 +1,25 @@
-<div class="container-flex-loginregister" >
-    <div class="container">
-      <section class="page-content">
-        <main class="login">
-          <div class="row login-maindiv">
-            <div class="col-6 login-div">
-              <h1 class="heading">Login</h1>
-              <form id="loginForm" name="loginForm" (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm" novalidate>
-                <div class="form-group">
-                  <input type="text" name="username" tabindex="1" autofocus class="text-field text-field-big" placeholder="Username" ngModel/>
-                  <!--<div *ngIf="email.errors && (email.dirty || email.touched) && error == null" class="field-error-txt">-->
-                    <!--<div [hidden]="!email.errors.required">-->
-                      <!--Email ID is required-->
-                    <!--</div>-->
-                  <!--</div>-->
-                  <!--<div *ngIf="EmailPatternError && !(email.errors && (email.dirty || email.touched) && error == null)" class="field-error-txt">-->
-                      <!--Must be a valid Email ID-->
-                  <!--</div>-->
-                </div>
-                <div class="form-group">
-                  <div class="form-group">
-                    <input type="password" name="password" tabindex="2" class="text-field text-field-big" placeholder="Password" ngModel/>
-                    <!--<div *ngIf="password.errors && (password.dirty || password.touched) && error == null" class="field-error-txt">-->
-                        <!--<div [hidden]="!password.errors.required">-->
-                          <!--Password is required-->
-                        <!--</div>-->
-                      <!--</div>-->
-                  </div>
-                </div>
-                <!--<div [ngClass]="{ 'serverError': error}" *ngIf="error">{{error.detail | capitalize}}</div>-->
-                <!--<div class="form-group">-->
-                  <!--<label class="checkbox">-->
-                    <!--<input type="checkbox"> Keep me signed in-->
-                    <!--<a routerLink="/forgotpassword">Forgot Password?</a>-->
-                  <!--</label>-->
-                <!--</div>-->
-                <div class="clearfix margin-b20">
-                  <button  type="submit" tabindex="3">
-                    LOG IN
-                  </button>
-                </div>
-                <!--<div class="margin-b20 ortxt">OR</div>-->
-                <!--<ul class="social-row">-->
-                    <!--<li>-->
-                        <!--<strong>Login With:</strong>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#" class="btn fb-btn-blue">-->
-                            <!--<span class="social-icons icon-icon_fb"></span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#" class="btn gplus-btn-red">-->
-                            <!--<span class="social-icons icon-icon_gplus"></span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#" class="btn twitter-btn-blue">-->
-                            <!--<span class="social-icons icon-icon_twitter"></span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-              </form>
-            </div>
-            <!--<div class="col-6 register-div">-->
-              <!--<h1 class="heading">Signup</h1>-->
-              <!--<p class="margin-muted margin-b20">-->
-                  <!--If you don’t have an account click the-->
-                  <!--<br>button below to create your account.-->
-              <!--</p>-->
-              <!--<a routerLink="register" class="btn btn-big btn-block margin-b20">-->
-                <!--SIGNUP WITH YOUR EMAIL-->
-                <!--<span class="social-icons icon-mail_outline"></span>-->
-              <!--</a>-->
-              <!--<div class="margin-b20 ortxt">OR</div>-->
-              <!--<a href="#nogo" class="btn btn-block fb-btn-blue margin-b10">-->
-                                      <!--SIGNUP WITH FACEBOOK <span class="social-icons icon-icon_fb"></span>-->
+<!-- <app-navbar></app-navbar> -->
 
-                                  <!--</a>-->
-              <!--<a href="#nogo" class="btn btn-block gplus-btn-red margin-b10">-->
-                                      <!--SIGNUP WITH GOOGLE+ <span class="social-icons icon-icon_gplus"></span>-->
-                                  <!--</a>-->
-              <!--<a href="#nogo" class="btn btn-block twitter-btn-blue margin-b10">-->
-                                      <!--SIGNUP WITH TWITTER <span class="social-icons icon-icon_twitter"></span>-->
-                                  <!--</a>-->
-            <!--</div>-->
-          </div>
-          <div class="login-foot">
-            Not able to login to your account? <span>Contact us. <span><a href="tel:+18662926227">(866)292-6227</a></span><span> / </span><span><a href="mailto:customercare@awana.org">customercare@awana.org</a></span></span>
-          </div>
-        </main>
-      </section>
-    </div>
-  </div>
+<div class="body">
+    <mat-card class="card">
+      <form class="form" [formGroup]="createForm">
+      <mat-form-field class="example-full-width">
+        <input type="email" autocomplete="off" matInput formControlName="username">
+            <!-- <mat-placeholder class="placeholder">Name </mat-placeholder> -->
+            <mat-error>Please enter valid Name</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input type="password" autocomplete="off" matInput  formControlName="password">
+                <!-- <mat-placeholder class="placeholder">Password </mat-placeholder> -->
+                <mat-error>Please enter valid password</mat-error>
+            </mat-form-field>
+            <button mat-raised-button (click)="LogIn()" class="loginbtn"><div class="Log-in">Log in</div></button>
+      </form>
+      <div class="login-foot">
+          Not able to login to your account? <span>Contact us. <span><a href="tel:+18662926227">(866)292-6227</a></span><span> / </span><span><a href="mailto:customercare@awana.org">customercare@awana.org</a></span></span>
+        </div>
+        </mat-card>
+
+    
+  
+</div>
